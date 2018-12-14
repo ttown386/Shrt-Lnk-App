@@ -1,7 +1,15 @@
 import React from 'react';
+import { Session } from 'meteor/session';
 
-export default class LinkListFilters extends React.Component {
-  render() {
-    return <p>test</p>
-  }
+export default () => {
+  return (
+    <div>
+      <label>
+        <input type="checkbox" onChange={(e) => {
+          Session.set('showVisible', !e.target.checked);
+        }}/>
+        Show Hidden Links
+      </label>
+    </div>
+  );
 }
