@@ -2,6 +2,7 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Tracker } from 'meteor/tracker';
 import { Session } from 'meteor/session';
+import FlipMove from 'react-flip-move';
 
 import { Links } from '../api/links';
 import LinksListItem from './LinksListItem';
@@ -26,6 +27,15 @@ export default class LinksList extends React.Component {
     this.linksTracker.stop();
   }
   renderLinksListItems() {
+
+    if (this.state.links.length === 0) {
+      return (
+        <div className="item">
+          <p className="item__status-message"> No Links to show.</p>
+        </div>
+      );
+    }
+
     return this.state.links.map((link)=> {
       const shortUrl = Meteor.absoluteUrl(link._id);
       return <LinksListItem key={link._id} visible={true} shortUrl={shortUrl} {...link}/>;
@@ -34,8 +44,9 @@ export default class LinksList extends React.Component {
   render() {
     return (
       <div>
-        <p>Links List</p>
-        {this.renderLinksListItems()}
+        <FlipMove maintainContainerHeight={true}>
+          {this.renderLinksListItems()}
+        </FlipMove>
       </div>
     );
   }
