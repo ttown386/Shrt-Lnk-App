@@ -17,11 +17,15 @@ h1 {
   margin-bottom: 1.4rem;
 }
 
+p {
+  margin-bottom: $space;
+}
+
 a {
   color: black;
 }
 
-input [type=text], input[type=email], input[type=password] {
+input[type=text], input[type=email], input[type=password] {
   border: 1px solid $input-border;
   font-size: $base-font-size;
   margin-bottom: 1.4rem;
